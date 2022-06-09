@@ -1,0 +1,22 @@
+version: "3.9"
+    
+# networks:
+#   APP:
+  
+services:
+  db:
+    image: postgres:latest
+    container_name: blog_app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    # networks:
+    #   - APP
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data: {}
