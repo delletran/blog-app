@@ -9,3 +9,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model User {
+  id  String @id @default(uuid())
+  username String? @unique 
+  fullname String? 
+  email String? @unique
+  first_name String?
+  last_name String?
+  password String? 
+  password2 String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  role      Role     @default(USER)
+  blogs Blog[]
+}
+
+model Blog {
+  id String @id @default(uuid())
+  title String
+  category String
+  description String
+  published Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tags String[]
+  authors User[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
