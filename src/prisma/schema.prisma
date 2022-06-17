@@ -12,30 +12,39 @@ datasource db {
 
 
 model User {
-  id  String @id @default(uuid())
-  username String? @unique 
-  fullname String? 
-  email String? @unique
-  first_name String?
-  last_name String?
-  password String? 
-  password2 String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  role      Role     @default(USER)
-  blogs Blog[]
+  user_id     Int         @id @default(autoincrement())
+  username    String?     @unique 
+  fullname    String? 
+  email       String?     @unique
+  first_name  String?
+  last_name   String?
+  password    String? 
+  password2   String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  role        Role        @default(USER)
+  blogs       Blog[]
+  profiles    Profile[]
+}
+
+model Profile {
+  bio        String?
+  profile_id Int          @id @default(autoincrement())
+  user_id    Int
+  user       User    @relation(fields: [user_id], references: [user_id])
 }
 
 model Blog {
-  id String @id @default(uuid())
-  title String
-  category String
+  id          Int         @id @default(autoincrement())
+  title       String
+  category    String
   description String
-  published Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  tags String[]
-  authors User[]
+  published   Boolean
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  tags        String[]
+  author_id Int?
+  author    User?   @relation(fields: [author_id], references: [user_id])
 }
 
 enum Role {

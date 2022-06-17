@@ -8,6 +8,8 @@ const blogs = [
     "title": "Being handsome",
     "category": "TEST_CATERGORY",
     "description": "How to be a president",
+    "createdAt":  Date().toLocaleString(),
+    "updatedAt":  Date().toLocaleString(),
     "published": true,
     "tags": ["President", "Rodel", "Letran", "delletran"]
   },
@@ -16,6 +18,8 @@ const blogs = [
     "title": "Always Handsome",
     "category": "TEST_CATERGORY",
     "description": "How to be a Handsome",
+    "createdAt":  Date().toLocaleString(),
+    "updatedAt":  Date().toLocaleString(),
     "published": true,
     "tags": ["Handsome", "Rodel", "Letran", "delletran"]
   },
